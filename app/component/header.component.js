@@ -1,4 +1,4 @@
-System.register(['angular2/core', "../repository/CarRepository", "angular2/http"], function(exports_1) {
+System.register(['angular2/core', "../repository/CarRepository", "angular2/http", "./detail.component"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
         switch (arguments.length) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', "../repository/CarRepository", "angular2/http"
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, CarRepository_1, http_1;
+    var core_1, CarRepository_1, http_1, detail_component_1;
     var HeaderComponent;
     return {
         setters:[
@@ -22,13 +22,21 @@ System.register(['angular2/core', "../repository/CarRepository", "angular2/http"
             },
             function (http_1_1) {
                 http_1 = http_1_1;
+            },
+            function (detail_component_1_1) {
+                detail_component_1 = detail_component_1_1;
             }],
         execute: function() {
             HeaderComponent = (function () {
                 function HeaderComponent(_carRepo) {
                     this._carRepo = _carRepo;
-                    this.title = "Here is a title";
+                    this.car = "Abbas";
+                    this.selectedCar = null;
                 }
+                HeaderComponent.prototype.onClicked = function (car) {
+                    console.log(car.Model);
+                    this.selectedCar = car;
+                };
                 HeaderComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     this._carRepo.GetAll().subscribe(function (k) { return _this.cars = k; });
@@ -37,6 +45,8 @@ System.register(['angular2/core', "../repository/CarRepository", "angular2/http"
                     core_1.Component({
                         selector: 'header-component',
                         templateUrl: 'app/component/component.template/header.component.html',
+                        directives: [detail_component_1.DetailComponent],
+                        inputs: ['car'],
                         providers: [CarRepository_1.CarRepository, http_1.HTTP_PROVIDERS]
                     }),
                     core_1.Injectable(), 

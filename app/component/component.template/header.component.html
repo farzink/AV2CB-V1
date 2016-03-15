@@ -1,9 +1,14 @@
-{{title}}
+{{car}}
 
 <div>
     <ul *ngFor="#car of cars">
         <li>{{car.Model}}</li>
         <li>{{car.Brand}}</li>
         <li>{{car.Year}}</li>
+        <li><button (click)="onClicked(car)">Details</button></li>
     </ul>
+
+    <div *ngIf="selectedCar !== null">
+        <detail-component [car]="selectedCar"></detail-component>
+    </div>
 </div>

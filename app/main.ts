@@ -1,4 +1,4 @@
 import {bootstrap}    from 'angular2/platform/browser'
-import {HeaderComponent} from "./component/header.component";
+import {MasterComponent} from "./component/master.component";
 
-bootstrap(HeaderComponent);
+bootstrap(MasterComponent);
